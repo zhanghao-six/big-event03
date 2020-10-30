@@ -2,6 +2,20 @@
 $(function() {
     // 调用获取头像
     getUserInfo();
+
+    // 4. 退出功能
+    var layer = layui.layer;
+    $('#btnLogout').on('click', function() {
+        // alert(11)
+        // 询问框
+        layer.confirm('确认退出吗?', { icon: 3, title: '提示' }, function(index) {
+            //do something
+            localStorage.removeItem('token');
+            location.href = '/login.html';
+            layer.close(index);
+        });
+    })
+
 });
 
 
@@ -22,7 +36,7 @@ function getUserInfo() {
             }
             // 请求成功 渲染头像信息
             renderAvactar(res.data);
-        }
+        },
     })
 }
 
